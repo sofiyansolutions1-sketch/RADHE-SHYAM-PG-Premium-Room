@@ -44,15 +44,32 @@ export default function Contact() {
     <div className="bg-gray-50 pb-16 md:pb-20">
       {/* Header */}
       <div className="bg-violet-900 py-16 md:py-24 text-center px-4">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-4 md:mb-6">Inquiry Form</h1>
-        <p className="text-lg sm:text-xl text-violet-200 max-w-2xl mx-auto">
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-4 md:mb-6"
+        >
+          Inquiry Form
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="text-lg sm:text-xl text-violet-200 max-w-2xl mx-auto"
+        >
           Interested in staying with us? Send us an inquiry and we'll get back to you immediately on WhatsApp.
-        </p>
+        </motion.p>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-[-2rem] md:mt-[-4rem] relative z-10 flex flex-col gap-12">
         {/* Contact Form */}
-        <div className="p-6 sm:p-10 lg:p-14 bg-white rounded-3xl shadow-xl border border-gray-100">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="p-6 sm:p-10 lg:p-14 bg-white rounded-3xl shadow-xl border border-gray-100"
+        >
           <div className="text-center mb-8">
             <h3 className="text-2xl sm:text-3xl font-serif font-bold text-violet-900">Send an Inquiry</h3>
             <p className="text-gray-500 mt-2">Fill out the form below and we'll connect with you on WhatsApp</p>
@@ -142,10 +159,16 @@ export default function Contact() {
               </motion.button>
             </form>
           )}
-        </div>
+        </motion.div>
 
         {/* Contact Information */}
-        <div className="bg-violet-900 text-white p-6 sm:p-10 lg:p-14 rounded-3xl shadow-xl border border-violet-800">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="bg-violet-900 text-white p-6 sm:p-10 lg:p-14 rounded-3xl shadow-xl border border-violet-800"
+        >
           <div className="text-center mb-8 sm:mb-12">
             <h3 className="text-2xl sm:text-3xl font-serif font-bold mb-4">Book a Visit</h3>
             <p className="text-violet-200">Prefer to speak directly or visit us? Here are our details.</p>
@@ -189,7 +212,7 @@ export default function Contact() {
           <div className="mt-12 pt-8 border-t border-violet-800 text-center">
              <p className="text-violet-300 italic text-lg">"We look forward to welcoming you to our community."</p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

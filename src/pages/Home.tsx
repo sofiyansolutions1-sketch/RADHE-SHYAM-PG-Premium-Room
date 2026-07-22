@@ -1,8 +1,27 @@
 import { motion } from 'motion/react';
-import { ArrowRight, Wifi, ShieldCheck, Droplets, Wind, Star } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ArrowRight, Wifi, ShieldCheck, Droplets, Wind, Star, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
+  const [currentHeroImage, setCurrentHeroImage] = useState(0);
+
+  const heroImages = [
+    'https://iili.io/CNTshBV.png',
+    'https://iili.io/CNTQw5F.png',
+    'https://iili.io/CNTt9GR.png',
+    'https://iili.io/CNTbJet.png',
+    'https://iili.io/CNTpm1j.png',
+    'https://iili.io/CNuHfUv.png',
+    'https://iili.io/CNuJs3b.png'
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeroImage((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
   const amenities = [
     { icon: Wind, title: 'Air Conditioned Rooms', desc: 'Comfortable air-conditioned spaces' },
     { icon: Wifi, title: 'High-Speed Wi-Fi', desc: 'Seamless internet for work & study' },
@@ -17,25 +36,25 @@ export default function Home() {
   ];
 
   const galleryImagesRow1 = [
-    'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-    'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-    'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-    'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    'https://iili.io/CNTshBV.png',
+    'https://iili.io/CNTQw5F.png',
+    'https://iili.io/CNTt9GR.png',
+    'https://iili.io/CNTbJet.png',
+    'https://iili.io/CNTpm1j.png',
   ];
   const galleryImagesRow2 = [
-    'https://images.unsplash.com/photo-1540518614846-7eded433c457?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-    'https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-    'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-    'https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-    'https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    'https://iili.io/CNuHfUv.png',
+    'https://iili.io/CNuJs3b.png',
+    'https://iili.io/CNTshBV.png',
+    'https://iili.io/CNTQw5F.png',
+    'https://iili.io/CNTt9GR.png',
   ];
   const galleryImagesRow3 = [
-    'https://images.unsplash.com/photo-1502672260266-1c1c24240f58?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-    'https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-    'https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-    'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    'https://iili.io/CNTbJet.png',
+    'https://iili.io/CNTpm1j.png',
+    'https://iili.io/CNuHfUv.png',
+    'https://iili.io/CNuJs3b.png',
+    'https://iili.io/CNTshBV.png',
   ];
 
   return (
@@ -43,13 +62,19 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative w-full aspect-video flex items-center justify-center overflow-hidden bg-violet-900">
         <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
-            alt="Premium Room" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-violet-900/40 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-black/20"></div>
+          {heroImages.map((img, idx) => (
+            <motion.img
+              key={idx}
+              src={img}
+              alt="Premium Room"
+              className="absolute inset-0 w-full h-full object-cover"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: idx === currentHeroImage ? 1 : 0 }}
+              transition={{ duration: 1 }}
+            />
+          ))}
+          <div className="absolute inset-0 bg-violet-900/40 mix-blend-multiply z-10"></div>
+          <div className="absolute inset-0 bg-black/20 z-10"></div>
         </div>
         
         <div className="relative z-10 text-center px-2 sm:px-4 max-w-4xl mx-auto w-full">
@@ -85,12 +110,24 @@ export default function Home() {
 
       {/* Auto-scrolling Gallery */}
       <section className="py-12 sm:py-20 bg-gray-900 overflow-hidden">
-        <div className="text-center mb-10 sm:mb-16 px-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10 sm:mb-16 px-4"
+        >
           <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-4">A Glimpse of Radhe Shyam PG</h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">Experience our beautifully designed spaces through our gallery.</p>
-        </div>
+        </motion.div>
         
-        <div className="flex flex-col gap-4 sm:gap-6">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="flex flex-col gap-4 sm:gap-6"
+        >
           {/* Row 1: Left */}
           <div className="flex gap-4 sm:gap-6 w-max animate-scroll-left">
              {[...galleryImagesRow1, ...galleryImagesRow1].map((img, i) => (
@@ -115,21 +152,31 @@ export default function Home() {
                </div>
              ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Quick Amenities Grid */}
       <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
             <h2 className="text-3xl font-serif font-bold text-violet-900 mb-4">Premium Amenities</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">Everything you need for a comfortable and hassle-free stay.</p>
-          </div>
+          </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {amenities.map((item, index) => (
               <motion.div 
                 key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
                 className="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-xl hover:shadow-fuchsia-500/5 transition-all text-center"
               >
@@ -144,13 +191,117 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Room Pricing Plans */}
+      <section className="py-16 sm:py-20 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl font-serif font-bold text-violet-900 mb-4">Our Pricing Plans</h2>
+            <div className="w-24 h-1 bg-fuchsia-500 mx-auto rounded-full mb-6"></div>
+            <p className="text-gray-600 max-w-2xl mx-auto">Choose the perfect room that fits your needs and budget. Fully furnished and ready to move in.</p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {/* Single Room */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              whileHover={{ y: -10 }}
+              className="bg-white rounded-3xl p-8 border border-gray-100 shadow-lg hover:shadow-2xl transition-all relative overflow-hidden"
+            >
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Single Room</h3>
+                <p className="text-gray-500 text-sm">Ultimate privacy & comfort</p>
+              </div>
+              <div className="text-center mb-8">
+                <span className="text-4xl font-bold text-violet-900">₹9,000</span>
+                <span className="text-gray-500">/month</span>
+              </div>
+              <ul className="space-y-4 mb-8 text-gray-600">
+                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> Personal AC & Geyser</li>
+                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> High-speed Wi-Fi</li>
+                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> Daily Housekeeping</li>
+                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> Nutritious Meals</li>
+              </ul>
+              <Link to="/contact" className="block w-full py-3 px-6 text-center text-violet-900 font-semibold bg-violet-50 hover:bg-violet-100 rounded-xl transition-colors">Book Now</Link>
+            </motion.div>
+
+            {/* Double Sharing */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              whileHover={{ y: -10 }}
+              className="bg-violet-900 rounded-3xl p-8 border border-violet-800 shadow-xl hover:shadow-2xl transition-all relative overflow-hidden transform md:-translate-y-4"
+            >
+              <div className="absolute top-0 right-0 bg-fuchsia-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">Most Popular</div>
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold text-white mb-2">Double Sharing</h3>
+                <p className="text-violet-200 text-sm">Perfect balance of social & private</p>
+              </div>
+              <div className="text-center mb-8">
+                <span className="text-4xl font-bold text-white">₹7,500</span>
+                <span className="text-violet-200">/month</span>
+              </div>
+              <ul className="space-y-4 mb-8 text-violet-100">
+                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-400 mr-3 shrink-0" /> Shared AC & Geyser</li>
+                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-400 mr-3 shrink-0" /> High-speed Wi-Fi</li>
+                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-400 mr-3 shrink-0" /> Daily Housekeeping</li>
+                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-400 mr-3 shrink-0" /> Nutritious Meals</li>
+              </ul>
+              <Link to="/contact" className="block w-full py-3 px-6 text-center text-white font-semibold bg-fuchsia-500 hover:bg-fuchsia-600 rounded-xl transition-colors shadow-lg hover:shadow-fuchsia-500/30">Book Now</Link>
+            </motion.div>
+
+            {/* Triple Sharing */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              whileHover={{ y: -10 }}
+              className="bg-white rounded-3xl p-8 border border-gray-100 shadow-lg hover:shadow-2xl transition-all relative overflow-hidden"
+            >
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Triple Sharing</h3>
+                <p className="text-gray-500 text-sm">Highly affordable & fun</p>
+              </div>
+              <div className="text-center mb-8">
+                <span className="text-4xl font-bold text-violet-900">₹6,000</span>
+                <span className="text-gray-500">/month</span>
+              </div>
+              <ul className="space-y-4 mb-8 text-gray-600">
+                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> Shared AC & Geyser</li>
+                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> High-speed Wi-Fi</li>
+                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> Daily Housekeeping</li>
+                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> Nutritious Meals</li>
+              </ul>
+              <Link to="/contact" className="block w-full py-3 px-6 text-center text-violet-900 font-semibold bg-violet-50 hover:bg-violet-100 rounded-xl transition-colors">Book Now</Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Brief About Us */}
       <section className="py-16 sm:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="w-full lg:w-1/2 relative">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="w-full lg:w-1/2 relative"
+            >
               <img 
-                src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                src="https://iili.io/CNuHfUv.png" 
                 alt="PG Interior" 
                 className="rounded-2xl shadow-2xl object-cover h-[500px] w-full"
               />
@@ -165,8 +316,14 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="w-full lg:w-1/2">
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="w-full lg:w-1/2"
+            >
               <h2 className="text-4xl font-serif font-bold text-violet-900 mb-6">A Home Away From Home</h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-6">
                 At Radhe Shyam PG, we understand that moving away from home can be daunting. That's why we've created a nurturing, secure, and vibrant environment specifically tailored for students and professionals in Vadodara.
@@ -177,7 +334,7 @@ export default function Home() {
               <Link to="/about" className="text-fuchsia-500 font-medium hover:text-fuchsia-600 inline-flex items-center">
                 Learn more about our mission <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -185,14 +342,28 @@ export default function Home() {
       {/* Testimonials */}
       <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
             <h2 className="text-3xl font-serif font-bold text-violet-900 mb-4">What Our Residents Say</h2>
             <div className="w-24 h-1 bg-fuchsia-500 mx-auto rounded-full"></div>
-          </div>
+          </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((t, i) => (
-              <div key={i} className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+              >
                 <div className="flex text-amber-500 mb-4">
                   {[...Array(t.rating)].map((_, idx) => (
                     <Star key={idx} className="h-5 w-5 fill-current" />
@@ -203,7 +374,7 @@ export default function Home() {
                   <p className="font-semibold text-gray-900">{t.name}</p>
                   <p className="text-sm text-fuchsia-500">{t.role}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -211,12 +382,24 @@ export default function Home() {
       {/* Map Section */}
       <section className="py-16 sm:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10 sm:mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-10 sm:mb-16"
+          >
             <h2 className="text-3xl font-serif font-bold text-violet-900 mb-4">Find Us Here</h2>
             <div className="w-24 h-1 bg-fuchsia-500 mx-auto rounded-full mb-6"></div>
             <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">Visit our premium accommodation in the heart of Vadodara.</p>
-          </div>
-          <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 relative h-[300px] sm:h-[450px]">
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 relative h-[300px] sm:h-[450px]"
+          >
             <a 
               href="https://www.google.com/maps/place/Radhe+Shyam+Pg/data=!4m2!3m1!1s0x0:0xf331343bedc97d9b?sa=X&ved=1t:2428&hl=en-US&ictx=111" 
               target="_blank" 
@@ -234,7 +417,7 @@ export default function Home() {
               referrerPolicy="no-referrer-when-downgrade"
               className="absolute inset-0 z-0 pointer-events-none"
             ></iframe>
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>

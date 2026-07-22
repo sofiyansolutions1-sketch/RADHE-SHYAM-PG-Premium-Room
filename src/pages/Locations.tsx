@@ -1,4 +1,5 @@
 import { MapPin, Users, Bed, CheckCircle2 } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export default function Locations() {
   const branches = [
@@ -8,8 +9,8 @@ export default function Locations() {
       mapUrl: 'https://www.google.com/maps/place/Radhe+Shyam+Pg/data=!4m2!3m1!1s0x0:0xf331343bedc97d9b?sa=X&ved=1t:2428&hl=en-US&ictx=111',
       capacity: 'Premium PG',
       images: [
-        'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        'https://iili.io/CNTt9GR.png',
+        'https://iili.io/CNTbJet.png',
       ],
       pricing: [
         { type: 'Starting From', price: '₹4,500/mo', available: true },
@@ -23,10 +24,21 @@ export default function Locations() {
     <div className="bg-white pb-16 md:pb-20">
       {/* Header */}
       <div className="bg-violet-900 py-16 md:py-24 text-center px-4">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-4 md:mb-6">Our Branches</h1>
-        <p className="text-lg sm:text-xl text-violet-200 max-w-2xl mx-auto">
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-4 md:mb-6"
+        >
+          Our Branches
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="text-lg sm:text-xl text-violet-200 max-w-2xl mx-auto"
+        >
           Strategically located in safe, prime areas of Vadodara with easy access to transit, colleges, and offices.
-        </p>
+        </motion.p>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 md:mt-16 space-y-16 md:space-y-24">
@@ -34,7 +46,13 @@ export default function Locations() {
           <div key={idx} className={`flex flex-col ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 md:gap-12`}>
             
             {/* Image Gallery */}
-            <div className="lg:w-1/2 space-y-4">
+            <motion.div 
+              initial={{ opacity: 0, x: idx % 2 !== 0 ? 30 : -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:w-1/2 space-y-4"
+            >
               <div className="rounded-3xl overflow-hidden shadow-lg h-64 sm:h-80 relative group">
                 <img src={branch.images[0]} alt={`${branch.name} main`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
@@ -47,10 +65,16 @@ export default function Locations() {
                    <span className="text-violet-900 font-medium z-10 flex items-center"><Users className="mr-2" /> View Gallery</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Details & Pricing */}
-            <div className="lg:w-1/2 flex flex-col justify-center">
+            <motion.div 
+              initial={{ opacity: 0, x: idx % 2 !== 0 ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="lg:w-1/2 flex flex-col justify-center"
+            >
               <div className="mb-2 flex items-center">
                 <span className="bg-fuchsia-100 text-fuchsia-600 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center">
                   <Bed className="w-4 h-4 mr-2" /> {branch.capacity}
@@ -95,7 +119,7 @@ export default function Locations() {
                   <MapPin className="mr-2 h-5 w-5" /> View on Google Maps
                 </a>
               </div>
-            </div>
+            </motion.div>
           </div>
         ))}
       </div>

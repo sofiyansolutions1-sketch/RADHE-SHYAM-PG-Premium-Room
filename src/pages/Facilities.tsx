@@ -24,10 +24,21 @@ export default function Facilities() {
     <div className="bg-gray-50 pb-16 md:pb-20">
       {/* Header */}
       <div className="bg-violet-900 py-16 md:py-24 text-center px-4">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-4 md:mb-6">Premium Facilities</h1>
-        <p className="text-lg sm:text-xl text-violet-200 max-w-2xl mx-auto">
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-4 md:mb-6"
+        >
+          Premium Facilities
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="text-lg sm:text-xl text-violet-200 max-w-2xl mx-auto"
+        >
           We've thoughtfully curated every amenity to ensure your stay is comfortable, productive, and hassle-free.
-        </p>
+        </motion.p>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-[-2rem] md:mt-[-3rem]">
@@ -54,14 +65,26 @@ export default function Facilities() {
       {/* Featured Amenity Image Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 md:mt-24">
         <div className="bg-white rounded-3xl overflow-hidden shadow-xl flex flex-col lg:flex-row">
-          <div className="lg:w-1/2">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:w-1/2"
+          >
             <img 
-              src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+              src="https://iili.io/CNuyUxt.png" 
               alt="Dining Area" 
               className="h-full w-full object-cover min-h-[250px] sm:min-h-[300px]"
             />
-          </div>
-          <div className="lg:w-1/2 p-8 sm:p-10 lg:p-16 flex flex-col justify-center">
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:w-1/2 p-8 sm:p-10 lg:p-16 flex flex-col justify-center"
+          >
             <h3 className="text-2xl sm:text-3xl font-serif font-bold text-violet-900 mb-4">Hygienic Dining Experience</h3>
             <p className="text-gray-600 mb-6 text-lg">
               Our in-house kitchen serves fresh, nutritious, and delicious vegetarian meals daily. We maintain the highest standards of hygiene and rotate our menu to ensure variety, keeping the 'home-cooked' essence alive.
@@ -71,7 +94,7 @@ export default function Facilities() {
               <li className="flex items-center"><div className="w-2 h-2 rounded-full bg-amber-500 mr-3"></div> Fulfilling Lunch (Tiffin available)</li>
               <li className="flex items-center"><div className="w-2 h-2 rounded-full bg-amber-500 mr-3"></div> Dinner with sweets & specials on weekends</li>
             </ul>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
