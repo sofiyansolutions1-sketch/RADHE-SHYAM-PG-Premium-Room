@@ -30,7 +30,7 @@ export default function Home() {
   ];
 
   const testimonials = [
-    { name: 'Priya Sharma', role: 'Student', text: 'The safest and most comfortable PG in Akota. The food feels like home!', rating: 5 },
+    { name: 'Priya Sharma', role: 'Student', text: 'The safest and most comfortable PG in Akota. The kitchen facility is great!', rating: 5 },
     { name: 'Anjali Patel', role: 'Working Professional', text: 'Excellent Wi-Fi and very clean rooms. Management is highly responsive.', rating: 5 },
     { name: 'Riya Desai', role: 'Student', text: 'Love the community here. The AC rooms are spacious and well-maintained.', rating: 4 },
   ];
@@ -117,7 +117,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10 sm:mb-16 px-4"
         >
-          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-4">A Glimpse of Radhe Shyam PG</h2>
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-4">Best PG in Vadodara</h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">Experience our beautifully designed spaces through our gallery.</p>
         </motion.div>
         
@@ -217,18 +217,17 @@ export default function Home() {
               className="bg-white rounded-3xl p-8 border border-gray-100 shadow-lg hover:shadow-2xl transition-all relative overflow-hidden"
             >
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Single Room</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Starting Rent</h3>
                 <p className="text-gray-500 text-sm">Ultimate privacy & comfort</p>
               </div>
               <div className="text-center mb-8">
-                <span className="text-4xl font-bold text-violet-900">₹9,000</span>
+                <span className="text-4xl font-bold text-violet-900">₹4,500</span>
                 <span className="text-gray-500">/month</span>
               </div>
               <ul className="space-y-4 mb-8 text-gray-600">
                 <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> Personal AC & Geyser</li>
                 <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> High-speed Wi-Fi</li>
                 <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> Daily Housekeeping</li>
-                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> Nutritious Meals</li>
               </ul>
               <Link to="/contact" className="block w-full py-3 px-6 text-center text-violet-900 font-semibold bg-violet-50 hover:bg-violet-100 rounded-xl transition-colors">Book Now</Link>
             </motion.div>
@@ -255,7 +254,6 @@ export default function Home() {
                 <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-400 mr-3 shrink-0" /> Shared AC & Geyser</li>
                 <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-400 mr-3 shrink-0" /> High-speed Wi-Fi</li>
                 <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-400 mr-3 shrink-0" /> Daily Housekeeping</li>
-                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-400 mr-3 shrink-0" /> Nutritious Meals</li>
               </ul>
               <Link to="/contact" className="block w-full py-3 px-6 text-center text-white font-semibold bg-fuchsia-500 hover:bg-fuchsia-600 rounded-xl transition-colors shadow-lg hover:shadow-fuchsia-500/30">Book Now</Link>
             </motion.div>
@@ -281,7 +279,6 @@ export default function Home() {
                 <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> Shared AC & Geyser</li>
                 <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> High-speed Wi-Fi</li>
                 <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> Daily Housekeeping</li>
-                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> Nutritious Meals</li>
               </ul>
               <Link to="/contact" className="block w-full py-3 px-6 text-center text-violet-900 font-semibold bg-violet-50 hover:bg-violet-100 rounded-xl transition-colors">Book Now</Link>
             </motion.div>

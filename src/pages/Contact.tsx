@@ -129,7 +129,7 @@ export default function Contact() {
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white"
                 >
                   <option value="" disabled>Choose Room Type</option>
-                  <option value="Single Room">Single Room</option>
+                  <option value="Starting Rent">Starting Rent</option>
                   <option value="Sharing Room">Sharing Room</option>
                   <option value="Double Sharing">Double Sharing Room</option>
                   <option value="Triple Sharing">Triple Sharing Room</option>

@@ -16,7 +16,7 @@ export default function Footer() {
               Premium Paying Guest accommodation for Girls & Boys focusing on safety, comfort, and community. Your home away from home.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-violet-200 hover:text-fuchsia-400 transition-colors">
+              <a href="https://www.instagram.com/vadodara_pg_girls?igsh=MTcwaTVuNmhhdGM1aQ%3D%3D" target="_blank" rel="noopener noreferrer" className="text-violet-200 hover:text-fuchsia-400 transition-colors">
                 <Instagram className="h-6 w-6" />
               </a>
             </div>

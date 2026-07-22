@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 export default function Facilities() {
   const facilities = [
     { icon: Wind, title: 'Air Conditioned Rooms', desc: 'Comfortable and fully air-conditioned living spaces' },
-    { icon: Refrigerator, title: 'Refrigerator', desc: 'Shared refrigerator for your food and beverages' },
+    { icon: Refrigerator, title: 'Refrigerator', desc: 'Shared refrigerator for your groceries and beverages' },
     { icon: WashingMachine, title: 'Fully Automatic Washing Machine', desc: 'Hassle-free laundry with automatic machines' },
     { icon: Droplets, title: 'RO Drinking Water', desc: 'Clean, safe, and purified drinking water available 24/7' },
     { icon: Flame, title: '24×7 Hot Water', desc: 'Geyser facility for hot water access anytime' },
@@ -62,41 +62,6 @@ export default function Facilities() {
         </div>
       </div>
       
-      {/* Featured Amenity Image Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 md:mt-24">
-        <div className="bg-white rounded-3xl overflow-hidden shadow-xl flex flex-col lg:flex-row">
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:w-1/2"
-          >
-            <img 
-              src="https://iili.io/CNuyUxt.png" 
-              alt="Dining Area" 
-              className="h-full w-full object-cover min-h-[250px] sm:min-h-[300px]"
-            />
-          </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:w-1/2 p-8 sm:p-10 lg:p-16 flex flex-col justify-center"
-          >
-            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-violet-900 mb-4">Hygienic Dining Experience</h3>
-            <p className="text-gray-600 mb-6 text-lg">
-              Our in-house kitchen serves fresh, nutritious, and delicious vegetarian meals daily. We maintain the highest standards of hygiene and rotate our menu to ensure variety, keeping the 'home-cooked' essence alive.
-            </p>
-            <ul className="space-y-3 text-gray-700">
-              <li className="flex items-center"><div className="w-2 h-2 rounded-full bg-amber-500 mr-3"></div> Breakfast with Tea/Coffee</li>
-              <li className="flex items-center"><div className="w-2 h-2 rounded-full bg-amber-500 mr-3"></div> Fulfilling Lunch (Tiffin available)</li>
-              <li className="flex items-center"><div className="w-2 h-2 rounded-full bg-amber-500 mr-3"></div> Dinner with sweets & specials on weekends</li>
-            </ul>
-          </motion.div>
-        </div>
-      </div>
     </div>
   );
 }
