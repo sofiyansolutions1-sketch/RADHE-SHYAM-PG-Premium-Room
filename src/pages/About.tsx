@@ -56,7 +56,7 @@ export default function About() {
           >
             <h2 className="text-2xl sm:text-3xl font-serif font-bold text-violet-900 mb-4 md:mb-6">Our Story</h2>
             <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-              RadheShyam PG is one of the best PG in Vadodara, offering safe, clean, and affordable accommodation in the prime location of Akota, Vadodara. We provide separate PG for Girls and PG for Boys with fully furnished rooms, making us an ideal choice for students, interns, and working professionals looking for a comfortable stay.
+              RadheShyam PG is one of the best PG in Vadodara, offering safe, clean, and affordable accommodation in the prime location of {activeBranch.subtitle}. We provide {activeBranch.forWhom === 'Girls Only' ? 'exclusive PG for Girls' : 'separate PG for Girls and PG for Boys'} with fully furnished rooms, making us an ideal choice for students, interns, and working professionals looking for a comfortable stay.
             </p>
             <p className="text-gray-600 text-lg mb-6 leading-relaxed">
               Our facilities include high-speed Wi-Fi, RO drinking water, CCTV security, housekeeping, washing machine, refrigerator, geyser, power backup, and spacious, well-maintained rooms. Conveniently located near MS University, Vadodara Railway Station, offices, coaching institutes, restaurants, and shopping areas, RadheShyam PG offers excellent connectivity across the city.

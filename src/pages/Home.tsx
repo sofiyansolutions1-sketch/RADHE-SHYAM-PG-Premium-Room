@@ -30,7 +30,7 @@ export default function Home() {
   ];
 
   const testimonials = [
-    { name: 'Priya Sharma', role: 'Student', text: 'The safest and most comfortable PG in Akota. The kitchen facility is great!', rating: 5 },
+    { name: 'Priya Sharma', role: 'Student', text: `The safest and most comfortable PG in ${activeBranch.subtitle.split(',')[0]}. The kitchen facility is great!`, rating: 5 },
     { name: 'Anjali Patel', role: 'Working Professional', text: 'Excellent Wi-Fi and very clean rooms. Management is highly responsive.', rating: 5 },
     { name: 'Riya Desai', role: 'Student', text: 'Love the community here. The AC rooms are spacious and well-maintained.', rating: 4 },
   ];
@@ -337,14 +337,14 @@ export default function Home() {
             className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 relative h-[300px] sm:h-[450px]"
           >
             <a 
-              href="https://www.google.com/maps/place/Radhe+Shyam+Pg/data=!4m2!3m1!1s0x0:0xf331343bedc97d9b?sa=X&ved=1t:2428&hl=en-US&ictx=111" 
+              href={activeBranch.mapUrl}
               target="_blank" 
               rel="noopener noreferrer" 
               className="absolute inset-0 z-10" 
               aria-label="Open in Google Maps"
             ></a>
             <iframe 
-              src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Silver%20Square,%20apartments,%20Shree%20Nagar%20Society,%20Akota,%20Vadodara+(Radhe%20Shyam%20PG)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" 
+              src={activeBranch.mapEmbedUrl}
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 

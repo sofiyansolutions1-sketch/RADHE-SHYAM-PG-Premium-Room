@@ -22,6 +22,7 @@ export interface Branch {
   displayPhone: string;
   email: string;
   mapUrl: string;
+  mapEmbedUrl: string;
   description: string;
   images: string[];
   pricing: PricingPlan[];
@@ -39,6 +40,7 @@ export const branchData: Record<BranchId, Branch> = {
     displayPhone: '+91 93166 98524',
     email: 'radhesyampg7373@gmail.com',
     mapUrl: 'https://www.google.com/maps/place/Radhe+Shyam+Pg/data=!4m2!3m1!1s0x0:0xf331343bedc97d9b?sa=X&ved=1t:2428&hl=en-US&ictx=111',
+    mapEmbedUrl: 'https://maps.google.com/maps?width=100%25&height=600&hl=en&q=Silver%20Square,%20apartments,%20Shree%20Nagar%20Society,%20Akota,%20Vadodara+(Radhe%20Shyam%20PG)&t=&z=15&ie=UTF8&iwloc=B&output=embed',
     description: 'Premium Paying Guest accommodation for Girls & Boys focusing on safety, comfort, and community. Your home away from home.',
     images: [
       'https://iili.io/CNTshBV.png',
@@ -74,7 +76,8 @@ export const branchData: Record<BranchId, Branch> = {
     phone: '918780865191',
     displayPhone: '+91 8780865191',
     email: 'radhesyampg7373@gmail.com',
-    mapUrl: 'https://maps.google.com/?q=Alkapuri,Vadodara',
+    mapUrl: 'https://www.google.com/maps?q=22.3107727,73.1699405&z=17&hl=en',
+    mapEmbedUrl: 'https://maps.google.com/maps?width=100%25&height=600&hl=en&q=Rc%20dutt%20road%20Punam%20apartment%205th%20floor%20near%20mahalaxmi%20provision%20store%20alkapuri%20vadodara%20390007+(Radhe%20Shyam%20PG)&t=&z=15&ie=UTF8&iwloc=B&output=embed',
     description: 'Radhe Shyam PG is a premium PG in Alkapuri, Vadodara, offering a safe, comfortable, and well-maintained stay for students and working professionals.',
     images: [
       'https://iili.io/CkDfggn.jpg',

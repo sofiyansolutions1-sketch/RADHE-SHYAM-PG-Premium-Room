@@ -179,7 +179,7 @@ export default function Contact() {
               <MapPin className="w-8 h-8 text-fuchsia-400 mr-4 mt-1 shrink-0" />
               <div>
                 <h4 className="font-semibold text-xl mb-2">Office Address</h4>
-                <p className="text-violet-200 leading-relaxed text-lg">Silver Square, apartments, Shree Nagar Society, Akota, Vadodara, Gujarat 390020</p>
+                <p className="text-violet-200 leading-relaxed text-lg">{activeBranch.address}</p>
               </div>
             </div>
             
@@ -187,7 +187,7 @@ export default function Contact() {
               <Phone className="w-8 h-8 text-fuchsia-400 mr-4 mt-1 shrink-0" />
               <div>
                 <h4 className="font-semibold text-xl mb-2">Phone</h4>
-                <p className="text-violet-200 text-lg"><a href="tel:+919316698524" className="hover:text-white transition-colors">+91 93166 98524</a></p>
+                <p className="text-violet-200 text-lg"><a href={`tel:+${activeBranch.phone}`} className="hover:text-white transition-colors">{activeBranch.displayPhone}</a></p>
               </div>
             </div>
 
@@ -195,7 +195,7 @@ export default function Contact() {
               <Mail className="w-8 h-8 text-fuchsia-400 mr-4 mt-1 shrink-0" />
               <div>
                 <h4 className="font-semibold text-xl mb-2">Email</h4>
-                <p className="text-violet-200 text-lg"><a href="mailto:radhesyampg7373@gmail.com" className="hover:text-white transition-colors">radhesyampg7373@gmail.com</a></p>
+                <p className="text-violet-200 text-lg"><a href={`mailto:${activeBranch.email}`} className="hover:text-white transition-colors">{activeBranch.email}</a></p>
               </div>
             </div>
 
