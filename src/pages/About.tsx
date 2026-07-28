@@ -1,7 +1,11 @@
 import { Heart, Shield, Users } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useLocationContext, branchData } from '../context/LocationContext';
 
 export default function About() {
+  const { activeBranchId } = useLocationContext();
+  const activeBranch = activeBranchId ? branchData[activeBranchId] : branchData.akota;
+  
   const values = [
     {
       icon: Shield,
@@ -69,7 +73,7 @@ export default function About() {
             className="relative"
           >
             <img 
-              src="https://iili.io/CNuyUxt.png" 
+              src={activeBranch.images[2] || activeBranch.images[0]} 
               alt="Community of students and professionals" 
               className="rounded-2xl shadow-xl object-cover h-[400px] sm:h-[500px] w-full"
             />

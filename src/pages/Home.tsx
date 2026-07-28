@@ -2,18 +2,18 @@ import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { ArrowRight, Wifi, ShieldCheck, Droplets, Wind, Star, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLocationContext, branchData } from '../context/LocationContext';
 
 export default function Home() {
+  const { activeBranchId } = useLocationContext();
+  const activeBranch = activeBranchId ? branchData[activeBranchId] : branchData.akota; // fallback
+  
   const [currentHeroImage, setCurrentHeroImage] = useState(0);
 
-  const heroImages = [
+  const heroImages = activeBranch.images.length > 0 ? activeBranch.images : [
     'https://iili.io/CNTshBV.png',
     'https://iili.io/CNTQw5F.png',
-    'https://iili.io/CNTt9GR.png',
-    'https://iili.io/CNTbJet.png',
-    'https://iili.io/CNTpm1j.png',
-    'https://iili.io/CNuHfUv.png',
-    'https://iili.io/CNuJs3b.png'
+    'https://iili.io/CNTt9GR.png'
   ];
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function Home() {
       setCurrentHeroImage((prev) => (prev + 1) % heroImages.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [heroImages.length]);
   const amenities = [
     { icon: Wind, title: 'Air Conditioned Rooms', desc: 'Comfortable air-conditioned spaces' },
     { icon: Wifi, title: 'High-Speed Wi-Fi', desc: 'Seamless internet for work & study' },
@@ -35,27 +35,13 @@ export default function Home() {
     { name: 'Riya Desai', role: 'Student', text: 'Love the community here. The AC rooms are spacious and well-maintained.', rating: 4 },
   ];
 
-  const galleryImagesRow1 = [
-    'https://iili.io/CNTshBV.png',
-    'https://iili.io/CNTQw5F.png',
-    'https://iili.io/CNTt9GR.png',
-    'https://iili.io/CNTbJet.png',
-    'https://iili.io/CNTpm1j.png',
-  ];
-  const galleryImagesRow2 = [
-    'https://iili.io/CNuHfUv.png',
-    'https://iili.io/CNuJs3b.png',
-    'https://iili.io/CNTshBV.png',
-    'https://iili.io/CNTQw5F.png',
-    'https://iili.io/CNTt9GR.png',
-  ];
-  const galleryImagesRow3 = [
-    'https://iili.io/CNTbJet.png',
-    'https://iili.io/CNTpm1j.png',
-    'https://iili.io/CNuHfUv.png',
-    'https://iili.io/CNuJs3b.png',
-    'https://iili.io/CNTshBV.png',
-  ];
+  const allImages = activeBranch.images;
+  const numImages = allImages.length;
+  
+  // Create 3 rows by shuffling/offsetting the images to make it look like a rich gallery
+  const galleryImagesRow1 = allImages.length > 0 ? [...allImages].sort(() => 0.5 - Math.random()).slice(0, Math.max(5, numImages)) : [];
+  const galleryImagesRow2 = allImages.length > 0 ? [...allImages].sort(() => 0.5 - Math.random()).slice(0, Math.max(5, numImages)) : [];
+  const galleryImagesRow3 = allImages.length > 0 ? [...allImages].sort(() => 0.5 - Math.random()).slice(0, Math.max(5, numImages)) : [];
 
   return (
     <div>
@@ -83,7 +69,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             className="text-[5vw] sm:text-4xl md:text-5xl lg:text-7xl font-serif font-bold text-white mb-1 sm:mb-4 drop-shadow-2xl leading-tight"
           >
-            Premium Living for <span className="text-fuchsia-400 drop-shadow-lg">Students & Professionals</span>
+            Premium Living for <span className="text-fuchsia-400 drop-shadow-lg">{activeBranch.forWhom}</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -91,7 +77,7 @@ export default function Home() {
             transition={{ delay: 0.2 }}
             className="text-[2.5vw] sm:text-base md:text-xl text-gray-100 mb-2 sm:mb-8 max-w-2xl mx-auto drop-shadow-xl px-2 leading-snug font-medium"
           >
-            Experience safety, comfort, and community at Vadodara's most trusted Paying Guest accommodation for Girls & Boys.
+            {activeBranch.description}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -207,81 +193,34 @@ export default function Home() {
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* Single Room */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              whileHover={{ y: -10 }}
-              className="bg-white rounded-3xl p-8 border border-gray-100 shadow-lg hover:shadow-2xl transition-all relative overflow-hidden"
-            >
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Starting Rent</h3>
-                <p className="text-gray-500 text-sm">Ultimate privacy & comfort</p>
-              </div>
-              <div className="text-center mb-8">
-                <span className="text-4xl font-bold text-violet-900">₹4,500</span>
-                <span className="text-gray-500">/month</span>
-              </div>
-              <ul className="space-y-4 mb-8 text-gray-600">
-                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> Personal AC & Geyser</li>
-                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> High-speed Wi-Fi</li>
-                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> Daily Housekeeping</li>
-              </ul>
-              <Link to="/contact" className="block w-full py-3 px-6 text-center text-violet-900 font-semibold bg-violet-50 hover:bg-violet-100 rounded-xl transition-colors">Book Now</Link>
-            </motion.div>
-
-            {/* Double Sharing */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              whileHover={{ y: -10 }}
-              className="bg-violet-900 rounded-3xl p-8 border border-violet-800 shadow-xl hover:shadow-2xl transition-all relative overflow-hidden transform md:-translate-y-4"
-            >
-              <div className="absolute top-0 right-0 bg-fuchsia-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">Most Popular</div>
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-white mb-2">Double Sharing</h3>
-                <p className="text-violet-200 text-sm">Perfect balance of social & private</p>
-              </div>
-              <div className="text-center mb-8">
-                <span className="text-4xl font-bold text-white">₹7,500</span>
-                <span className="text-violet-200">/month</span>
-              </div>
-              <ul className="space-y-4 mb-8 text-violet-100">
-                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-400 mr-3 shrink-0" /> Shared AC & Geyser</li>
-                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-400 mr-3 shrink-0" /> High-speed Wi-Fi</li>
-                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-400 mr-3 shrink-0" /> Daily Housekeeping</li>
-              </ul>
-              <Link to="/contact" className="block w-full py-3 px-6 text-center text-white font-semibold bg-fuchsia-500 hover:bg-fuchsia-600 rounded-xl transition-colors shadow-lg hover:shadow-fuchsia-500/30">Book Now</Link>
-            </motion.div>
-
-            {/* Triple Sharing */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              whileHover={{ y: -10 }}
-              className="bg-white rounded-3xl p-8 border border-gray-100 shadow-lg hover:shadow-2xl transition-all relative overflow-hidden"
-            >
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Triple Sharing</h3>
-                <p className="text-gray-500 text-sm">Highly affordable & fun</p>
-              </div>
-              <div className="text-center mb-8">
-                <span className="text-4xl font-bold text-violet-900">₹6,000</span>
-                <span className="text-gray-500">/month</span>
-              </div>
-              <ul className="space-y-4 mb-8 text-gray-600">
-                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> Shared AC & Geyser</li>
-                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> High-speed Wi-Fi</li>
-                <li className="flex items-center"><CheckCircle2 className="w-5 h-5 text-fuchsia-500 mr-3 shrink-0" /> Daily Housekeeping</li>
-              </ul>
-              <Link to="/contact" className="block w-full py-3 px-6 text-center text-violet-900 font-semibold bg-violet-50 hover:bg-violet-100 rounded-xl transition-colors">Book Now</Link>
-            </motion.div>
+            {activeBranch.pricing.map((plan, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
+                whileHover={{ y: -10 }}
+                className={`${plan.popular ? 'bg-violet-900 border-violet-800 shadow-xl transform md:-translate-y-4 text-white' : 'bg-white border-gray-100 shadow-lg text-gray-900'} rounded-3xl p-8 border hover:shadow-2xl transition-all relative overflow-hidden`}
+              >
+                {plan.popular && (
+                  <div className="absolute top-0 right-0 bg-fuchsia-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">Most Popular</div>
+                )}
+                <div className="text-center mb-6">
+                  <h3 className={`text-2xl font-bold ${plan.popular ? 'text-white' : 'text-gray-900'} mb-2`}>{plan.type}</h3>
+                </div>
+                <div className="text-center mb-8">
+                  <span className={`text-4xl font-bold ${plan.popular ? 'text-white' : 'text-violet-900'}`}>{plan.price}</span>
+                  <span className={plan.popular ? 'text-violet-200' : 'text-gray-500'}>/month</span>
+                </div>
+                <ul className={`space-y-4 mb-8 ${plan.popular ? 'text-violet-100' : 'text-gray-600'}`}>
+                  <li className="flex items-center"><CheckCircle2 className={`w-5 h-5 mr-3 shrink-0 ${plan.popular ? 'text-fuchsia-400' : 'text-fuchsia-500'}`} /> AC & Geyser</li>
+                  <li className="flex items-center"><CheckCircle2 className={`w-5 h-5 mr-3 shrink-0 ${plan.popular ? 'text-fuchsia-400' : 'text-fuchsia-500'}`} /> High-speed Wi-Fi</li>
+                  <li className="flex items-center"><CheckCircle2 className={`w-5 h-5 mr-3 shrink-0 ${plan.popular ? 'text-fuchsia-400' : 'text-fuchsia-500'}`} /> Daily Housekeeping</li>
+                </ul>
+                <Link to="/contact" className={`block w-full py-3 px-6 text-center font-semibold rounded-xl transition-colors ${plan.popular ? 'text-white bg-fuchsia-500 hover:bg-fuchsia-600 shadow-lg hover:shadow-fuchsia-500/30' : 'text-violet-900 bg-violet-50 hover:bg-violet-100'}`}>Book Now</Link>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -298,7 +237,7 @@ export default function Home() {
               className="w-full lg:w-1/2 relative"
             >
               <img 
-                src="https://iili.io/CNuHfUv.png" 
+                src={activeBranch.images[2] || activeBranch.images[0]} 
                 alt="PG Interior" 
                 className="rounded-2xl shadow-2xl object-cover h-[500px] w-full"
               />

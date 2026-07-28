@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Mail, MapPin, Phone, Send, Clock, MessageCircle } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useLocationContext, branchData } from '../context/LocationContext';
 
 export default function Contact() {
+  const { activeBranchId } = useLocationContext();
+  const activeBranch = activeBranchId ? branchData[activeBranchId] : branchData.akota; // fallback
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -16,12 +20,8 @@ export default function Contact() {
     e.preventDefault();
     
     // Construct WhatsApp message
-    const phoneNumber = "919316698524";
-    const text = `*New Inquiry from Website*
-*Name:* ${formData.name}
-*Contact Number:* ${formData.phone}
-*Room Preference:* ${formData.room}
-*Description/Notes:* ${formData.notes}`;
+    const phoneNumber = activeBranch.phone;
+    const text = `*New Inquiry from Website*\n*Name:* ${formData.name}\n*Contact Number:* ${formData.phone}\n*Room Preference:* ${formData.room}\n*Description/Notes:* ${formData.notes}`;
     
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
     
@@ -129,10 +129,10 @@ export default function Contact() {
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white"
                 >
                   <option value="" disabled>Choose Room Type</option>
-                  <option value="Starting Rent">Starting Rent</option>
-                  <option value="Sharing Room">Sharing Room</option>
-                  <option value="Double Sharing">Double Sharing Room</option>
-                  <option value="Triple Sharing">Triple Sharing Room</option>
+                  {activeBranch.pricing.map((plan, idx) => (
+                    <option key={idx} value={plan.type}>{plan.type}</option>
+                  ))}
+                  <option value="Other">Other Inquiry</option>
                 </select>
               </div>
 

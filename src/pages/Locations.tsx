@@ -1,24 +1,9 @@
 import { MapPin, Users, Bed, CheckCircle2 } from 'lucide-react';
 import { motion } from 'motion/react';
+import { branchData } from '../context/LocationContext';
 
 export default function Locations() {
-  const branches = [
-    {
-      name: "RADHE SHYAM PG – Akota - Vadodara",
-      address: 'Located in Akota, with excellent connectivity to: Alkapuri - MS University - Sayajigunj - Vadodara Railway Station - Diwalipura - Jetalpur Road',
-      mapUrl: 'https://www.google.com/maps/place/Radhe+Shyam+Pg/data=!4m2!3m1!1s0x0:0xf331343bedc97d9b?sa=X&ved=1t:2428&hl=en-US&ictx=111',
-      capacity: 'Premium PG',
-      images: [
-        'https://iili.io/CNTt9GR.png',
-        'https://iili.io/CNTbJet.png',
-      ],
-      pricing: [
-        { type: 'Starting From', price: '₹4,500/mo', available: true },
-        { type: '3 Sharing AC', price: '₹6,000/mo', available: true },
-        { type: '2 Sharing AC', price: '₹7,500/mo', available: true },
-      ]
-    }
-  ];
+  const branches = Object.values(branchData);
 
   return (
     <div className="bg-white pb-16 md:pb-20">
@@ -60,9 +45,8 @@ export default function Locations() {
                 <div className="rounded-2xl overflow-hidden shadow h-40">
                   <img src={branch.images[1]} alt={`${branch.name} secondary`} className="w-full h-full object-cover" />
                 </div>
-                <div className="rounded-2xl overflow-hidden shadow h-40 bg-fuchsia-50 flex items-center justify-center relative cursor-pointer">
-                   <div className="absolute inset-0 bg-violet-900/10"></div>
-                   <span className="text-violet-900 font-medium z-10 flex items-center"><Users className="mr-2" /> View Gallery</span>
+                <div className="rounded-2xl overflow-hidden shadow h-40">
+                  <img src={branch.images[2]} alt={`${branch.name} tertiary`} className="w-full h-full object-cover" />
                 </div>
               </div>
             </motion.div>
@@ -77,7 +61,7 @@ export default function Locations() {
             >
               <div className="mb-2 flex items-center">
                 <span className="bg-fuchsia-100 text-fuchsia-600 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center">
-                  <Bed className="w-4 h-4 mr-2" /> {branch.capacity}
+                  <Bed className="w-4 h-4 mr-2" /> {branch.forWhom}
                 </span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-serif font-bold text-violet-900 mb-4">{branch.name}</h2>
@@ -93,16 +77,13 @@ export default function Locations() {
                     <div key={i} className="flex justify-between items-center border-b border-gray-200 pb-4 last:border-0 last:pb-0">
                       <div>
                         <p className="font-semibold text-gray-800">{plan.type}</p>
-                        <p className={`text-sm flex items-center mt-1 ${plan.available ? 'text-green-600' : 'text-red-500'}`}>
-                          {plan.available ? (
-                            <><CheckCircle2 className="w-4 h-4 mr-1" /> Available</>
-                          ) : (
-                            <>Waitlisted</>
-                          )}
+                        <p className="text-sm flex items-center mt-1 text-green-600">
+                          <CheckCircle2 className="w-4 h-4 mr-1" /> Available
                         </p>
                       </div>
                       <div className="text-right">
                         <span className="text-lg font-bold text-violet-900">{plan.price}</span>
+                        <span className="text-gray-500 text-sm">/mo</span>
                       </div>
                     </div>
                   ))}
