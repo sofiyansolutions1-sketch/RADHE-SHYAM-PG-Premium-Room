@@ -111,7 +111,7 @@ export const branchData: Record<BranchId, Branch> = {
 
 interface LocationContextType {
   activeBranchId: BranchId | null;
-  setActiveBranchId: (id: BranchId) => void;
+  setActiveBranchId: (id: BranchId | null) => void;
   activeBranch: Branch | null;
 }
 
@@ -125,6 +125,8 @@ export function LocationProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (activeBranchId) {
       localStorage.setItem('selectedBranch', activeBranchId);
+    } else {
+      localStorage.removeItem('selectedBranch');
     }
   }, [activeBranchId]);
 

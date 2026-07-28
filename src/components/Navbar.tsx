@@ -31,10 +31,7 @@ export default function Navbar() {
               <div className="hidden lg:flex items-center ml-4 pl-4 border-l border-gray-200">
                 <span className="text-sm font-medium text-gray-500 mr-2">{activeBranch.subtitle}</span>
                 <button 
-                  onClick={() => {
-                    window.localStorage.removeItem('selectedBranch');
-                    window.location.reload();
-                  }}
+                  onClick={() => setActiveBranchId(null)}
                   className="text-xs bg-violet-100 text-violet-700 hover:bg-violet-200 px-2 py-1 rounded transition-colors flex items-center"
                 >
                   <MapPin className="w-3 h-3 mr-1" /> Change
@@ -85,8 +82,8 @@ export default function Navbar() {
                   <span className="text-sm font-medium text-gray-500">{activeBranch.subtitle}</span>
                   <button 
                     onClick={() => {
-                      window.localStorage.removeItem('selectedBranch');
-                      window.location.reload();
+                      setActiveBranchId(null);
+                      setIsOpen(false);
                     }}
                     className="text-xs bg-violet-100 text-violet-700 hover:bg-violet-200 px-2 py-1 rounded transition-colors flex items-center"
                   >
