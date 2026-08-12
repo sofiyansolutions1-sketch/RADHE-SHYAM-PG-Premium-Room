@@ -67,9 +67,9 @@ export const branchData: Record<BranchId, Branch> = {
   },
   alkapuri: {
     id: 'alkapuri',
-    name: "RADHE SHYAM PG - for girl's",
+    name: 'RADHE SHYAM PG',
     subtitle: 'Alkapuri, Vadodara',
-    forWhom: 'Girls Only',
+    forWhom: 'Girls & Boys',
     address: '301 - 302 A magal Murti apartment RC Dutt Rd, Alkapuri, Vadodara, Gujarat 390007',
     phone: '918780865191',
     displayPhone: '+91 8780865191',

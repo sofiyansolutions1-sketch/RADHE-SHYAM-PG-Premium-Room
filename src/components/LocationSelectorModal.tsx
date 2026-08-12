@@ -23,7 +23,7 @@ export default function LocationSelectorModal() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {(Object.keys(branchData) as BranchId[]).map((id) => {
+            {(['alkapuri', 'akota'] as BranchId[]).map((id) => {
               const branch = branchData[id];
               return (
                 <button

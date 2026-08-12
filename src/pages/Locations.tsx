@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { branchData } from '../context/LocationContext';
 
 export default function Locations() {
-  const branches = Object.values(branchData);
+  const branches = [branchData.alkapuri, branchData.akota];
 
   return (
     <div className="bg-white pb-16 md:pb-20">

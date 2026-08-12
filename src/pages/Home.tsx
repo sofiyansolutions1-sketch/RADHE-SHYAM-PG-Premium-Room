@@ -69,7 +69,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             className="text-[5vw] sm:text-4xl md:text-5xl lg:text-7xl font-serif font-bold text-white mb-1 sm:mb-4 drop-shadow-2xl leading-tight"
           >
-            Premium Living for <span className="text-fuchsia-400 drop-shadow-lg">{activeBranch.forWhom}</span>
+            Best PG in <span className="text-fuchsia-400 drop-shadow-lg">Vadodara</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}

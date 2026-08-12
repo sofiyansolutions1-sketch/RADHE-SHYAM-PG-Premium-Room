@@ -1,7 +1,6 @@
 import { MessageCircle, PhoneCall, MapPin } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useLocationContext, branchData } from '../context/LocationContext';
-import VoiceAssistantWidget from './VoiceAssistantWidget';
 
 export default function FloatingActions() {
   const { activeBranchId, setActiveBranchId } = useLocationContext();
@@ -19,7 +18,6 @@ export default function FloatingActions() {
       >
         <MapPin className="h-6 w-6" />
       </motion.button>
-      <VoiceAssistantWidget />
       <motion.a
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
