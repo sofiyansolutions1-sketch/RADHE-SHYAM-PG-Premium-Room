@@ -62,7 +62,7 @@ export default function About() {
               Our facilities include high-speed Wi-Fi, RO drinking water, CCTV security, housekeeping, washing machine, refrigerator, geyser, power backup, and spacious, well-maintained rooms. Conveniently located near MS University, Vadodara Railway Station, offices, coaching institutes, restaurants, and shopping areas, RadheShyam PG offers excellent connectivity across the city.
             </p>
             <p className="text-gray-600 text-lg leading-relaxed">
-              Whether you are searching for a PG in Alkapuri, Girls PG in Vadodara, Boys PG in Alkapuri, PG near MS University Vadodara, PG near Vadodara Railway Station, Affordable PG in Vadodara, or Fully Furnished PG in Vadodara, RadheShyam PG provides a secure, hygienic, and home-like living experience with quality service at a reasonable price. Choose RadheShyam PG for a peaceful, comfortable, and reliable stay in the heart of Alkapuri, Vadodara.
+              Whether you are searching for a PG in {activeBranch.subtitle}, Girls PG in Vadodara, Boys PG in Vadodara, PG near MS University Vadodara, PG near Vadodara Railway Station, Affordable PG in Vadodara, or Fully Furnished PG in Vadodara, RadheShyam PG provides a secure, hygienic, and home-like living experience with quality service at a reasonable price. Choose RadheShyam PG for a peaceful, comfortable, and reliable stay in the heart of {activeBranch.subtitle}.
             </p>
           </motion.div>
           <motion.div 
